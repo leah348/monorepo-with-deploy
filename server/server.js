@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/messages", async (req, res) => {
-  const data = await db.query(`SELECT * FROM messages`);
+  const data = await db.query(`SELECT * FROM message`);
   const messages = data.rows;
   res.status(200).json(messages);
 });
@@ -25,7 +25,7 @@ app.get("/messages", async (req, res) => {
 app.post("/messages", async (req, res) => {
   const userData = req.body;
   const dbQuery = await db.query(
-    `INSERT INTO messages (msg_name, content) VALUES ($1, $2)`,
+    `INSERT INTO message (msg_name, content) VALUES ($1, $2)`,
     [userData.msg_name, userData.content],
   );
 
